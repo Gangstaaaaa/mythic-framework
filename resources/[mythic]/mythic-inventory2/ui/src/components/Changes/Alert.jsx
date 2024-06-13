@@ -10,7 +10,7 @@ const useStyles = makeStyles((theme) => ({
 		zIndex: 1,
 	},
 	img: {
-		height: 152,
+		height: 125,
 		width: '100%',
 		overflow: 'hidden',
 		zIndex: 3,
@@ -34,8 +34,8 @@ const useStyles = makeStyles((theme) => ({
 		zIndex: 4,
 	},
 	slot: {
-		width: 132,
-		height: 152,
+		width: 125,
+		height: 125,
 		backgroundColor: `${theme.palette.secondary.light}61`,
 		border: `1px solid rgba(255, 255, 255, 0.04)`,
 		position: 'relative',

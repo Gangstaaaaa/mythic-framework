@@ -32,12 +32,12 @@ const useStyles = makeStyles((theme) => ({
 		height: '100%',
 		gap: 200,
 	},
-	gridBg: {
-		background: `#080808d6`,
-		padding: 25,
-		border: `1px solid rgba(255, 255, 255, 0.04)`,
-		height: 'fit-content',
-	},
+	// gridBg: {
+	// 	background: `#00643a1a`,
+	// 	padding: 25,
+	// 	border: `1px solid rgba(255, 255, 255, 0.04)`,
+	// 	height: 'fit-content',
+	// },
 	container: {
 		userSelect: 'none',
 		'-webkit-user-select': 'none',
@@ -46,44 +46,45 @@ const useStyles = makeStyles((theme) => ({
 	},
 	inventoryGrid: {
 		display: 'grid',
-		gridTemplateColumns: '1fr 1fr 1fr 1fr',
+		gridTemplateColumns: '1fr 1fr 1fr 1fr 1fr',
 		overflowX: 'hidden',
 		overflowY: 'scroll',
 		maxHeight: 'calc(60vh - 90px)',
 		height: 'fit-content',
 		userSelect: 'none',
 		'-webkit-user-select': 'none',
-		minWidth: 678,
+		minWidth: 645,
 		gridAutoRows: 'max-content',
-		gap: 6,
+		gap: 1,
 		'&::-webkit-scrollbar': {
 			width: 6,
 		},
 		'&::-webkit-scrollbar-thumb': {
-			background: `${theme.palette.primary.dark}9e`,
+			background: `${theme.palette.primary.light}9e`,
 			transition: 'background ease-in 0.15s',
 		},
 		'&::-webkit-scrollbar-thumb:hover': {
-			background: `${theme.palette.primary.dark}61`,
+			background: `${theme.palette.primary.light}61`,
 		},
 		'&::-webkit-scrollbar-track': {
 			background: 'transparent',
 		},
 	},
 	inventoryWeight: {
-		padding: '0 0 5px 0',
+		padding: 5,
 		position: 'relative',
 	},
 	weightText: {
 		position: 'absolute',
 		height: 'fit-content',
 		width: 'fit-content',
-		bottom: 10,
-		right: '1%',
+		top: 0,
+		bottom: 0,
+		right: '2%',
 		margin: 'auto',
 		zIndex: 1,
-		fontSize: 16,
-		textShadow: `0 0 10px ${theme.palette.secondary.dark}`,
+		fontSize: 12,
+		textShadow: `0 0 10px ${theme.palette.secondary.light}`,
 		'&::after': {
 			content: '"lbs"',
 			marginLeft: 5,
@@ -91,13 +92,13 @@ const useStyles = makeStyles((theme) => ({
 		},
 	},
 	inventoryWeightBar: {
-		height: 6,
-		borderRadius: 0,
+		height: 20,
+		borderRadius: 5,
 	},
 	inventoryHeader: {
 		paddingLeft: 5,
-		fontWeight: 'bold',
-		fontSize: 18,
+		// fontWeight: 'bold',
+		fontSize: 15,
 		userSelect: 'none',
 		'-webkit-user-select': 'none',
 	},
@@ -120,9 +121,9 @@ const useStyles = makeStyles((theme) => ({
 		'-webkit-user-select': 'none',
 	},
 	useBtn: {
-		width: 150,
-		height: 175,
-		lineHeight: '175px',
+		width: 130,
+		height: 130,
+		lineHeight: '130px',
 		textAlign: 'center',
 		fontSize: 36,
 		position: 'absolute',
@@ -455,7 +456,7 @@ export default (props) => {
 							});
 						}}
 					>
-						<FontAwesomeIcon icon={['fas', 'bullseye-pointer']} />
+						<FontAwesomeIcon icon={['fas', 'fingerprint']} />
 					</div>
 				</Fade>
 				<div className={classes.root} onClick={cancelDrag}>
