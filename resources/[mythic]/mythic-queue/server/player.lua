@@ -46,7 +46,7 @@ function PlayerClass(identifier, player, deferrals)
 	end
 
 	while prio == nil do
-		Citizen.Wait(10)
+		Wait(10)
 	end
 
 	local _data = {
@@ -100,7 +100,7 @@ function PlayerClass(identifier, player, deferrals)
 				return true
 			end
 			
-			print(type(Convar.ACCESS_ROLE.value))
+			-- print(type(Convar.ACCESS_ROLE.value))
 			if Convar.ACCESS_ROLE.value == '0' then
 				return true
 			end

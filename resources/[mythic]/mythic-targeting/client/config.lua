@@ -1,4 +1,8 @@
 Config = {
+	Sprite = {
+		color = { r = 138, g = 0, b = 0, a = 255 },
+		active = true
+	},
 	DefaultIcons = {
 		ped = "person-walking",
 		player = "person",
@@ -101,7 +105,7 @@ Config.VehicleMenu = {
 				and vehState.VIN ~= nil
 				and not vehState.wasThermited
 				and GetEntityHealth(entityData.entity) > 0
-				and isNearTrunk(entityData.entity, 4.0)
+				and IsNearTrunk(entityData.entity, 4.0)
 		end,
 		text = "View Trunk",
 		event = "Inventory:Client:Trunk",
@@ -110,17 +114,14 @@ Config.VehicleMenu = {
 	},
 	{
 		icon = "trash",
-		isEnabled = function(data, entityData)
-			return isNearTrunk(entityData.entity, 4.0, true)
-		end,
 		text = "Toss Garbage",
 		event = "Garbage:Client:TossBag",
 		model = `trash2`,
 		tempjob = "Garbage",
 		data = {},
-		minDist = 10.0,
+		minDist = 5.0,
 		isEnabled = function(data, entityData)
-			return LocalPlayer.state.carryingGarbabge and LocalPlayer.state.inGarbagbeZone
+			return LocalPlayer.state.carryingGarbabge and LocalPlayer.state.inGarbagbeZone and IsNearTrunk(entityData.entity, 4.0, true)
 		end
 	},
 	{
@@ -307,7 +308,7 @@ Config.VehicleMenu = {
 			return LocalPlayer.state.isEscorting ~= nil
 				and not LocalPlayer.state.isDead
 				and not LocalPlayer.state.inTrunk
-				and isNearTrunk(entity.entity, 4.0, true)
+				and IsNearTrunk(entity.entity, 4.0, true)
 		end,
 	},
 	{
@@ -320,7 +321,7 @@ Config.VehicleMenu = {
 			return LocalPlayer.state.isEscorting == nil
 				and not LocalPlayer.state.isDead
 				and not LocalPlayer.state.inTrunk
-				and isNearTrunk(entity.entity, 4.0, false)
+				and IsNearTrunk(entity.entity, 4.0, false)
 				and GlobalState[string.format("Trunk:%s", NetworkGetNetworkIdFromEntity(entity.entity))]
 				and #GlobalState[string.format("Trunk:%s", NetworkGetNetworkIdFromEntity(entity.entity))] > 0
 		end,
@@ -336,7 +337,7 @@ Config.VehicleMenu = {
 			return LocalPlayer.state.isEscorting == nil
 				and not LocalPlayer.state.isDead
 				and not LocalPlayer.state.inTrunk
-				and isNearTrunk(entityData.entity, 4.0, true)
+				and IsNearTrunk(entityData.entity, 4.0, true)
 		end,
 	},
 	-- Mechanic
@@ -414,7 +415,7 @@ Config.VehicleMenu = {
             if DoesEntityExist(veh) and Tow:IsTowTruck(veh) and not vehEnt.state.towingVehicle then
 				local rearWheel = GetEntityBoneIndexByName(veh, 'wheel_lr')
                 local rearWheelCoords = GetWorldPositionOfEntityBone(veh, rearWheel)
-				if #(rearWheelCoords - LocalPlayer.state.myPos) <= 3.0 then
+				if #(rearWheelCoords - LocalPlayer.state.position) <= 3.0 then
 					return true
 				end
             end
@@ -434,7 +435,7 @@ Config.VehicleMenu = {
             if DoesEntityExist(veh) and Tow:IsTowTruck(veh) and vehEnt.state.towingVehicle then
 				local rearWheel = GetEntityBoneIndexByName(veh, 'wheel_lr')
                 local rearWheelCoords = GetWorldPositionOfEntityBone(veh, rearWheel)
-				if #(rearWheelCoords - LocalPlayer.state.myPos) <= 3.0 then
+				if #(rearWheelCoords - LocalPlayer.state.position) <= 3.0 then
 					return true
 				end
             end
@@ -522,7 +523,7 @@ Config.VehicleMenu = {
 	{
 		icon = "hand",
 		isEnabled = function(data, entityData)
-			return isNearTrunk(entityData.entity, 4.0, true)
+			return IsNearTrunk(entityData.entity, 4.0, true)
 		end,
 		text = "Grab Loot",
 		event = "Robbery:Client:MoneyTruck:GrabLoot",
@@ -537,7 +538,7 @@ Config.VehicleMenu = {
 	{
 		icon = "hand",
 		isEnabled = function(data, entityData)
-			return isNearTrunk(entityData.entity, 4.0, true)
+			return IsNearTrunk(entityData.entity, 4.0, true)
 		end,
 		text = "Grab Loot",
 		event = "Robbery:Client:MoneyTruck:GrabLoot",
